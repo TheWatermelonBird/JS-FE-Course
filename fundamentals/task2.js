@@ -5,3 +5,13 @@
 // [1, 1, 2] ==> 2
 // [17, 17, 3, 17, 17, 17, 17] ==> 3
 // ==================================
+
+function findDifferent(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr.indexOf(arr[i]) === arr.lastIndexOf(arr[i])) {
+      return arr[i];
+    }
+  }
+}
+
+module.exports = findDifferent;
