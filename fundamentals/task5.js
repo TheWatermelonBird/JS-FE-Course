@@ -13,3 +13,34 @@
 // Line.Tickets([25, 25, 50, 50, 100])
 // => NO. Vasya will not have the right bills to give 75 dollars of change (you can't make two bills of 25 from one of 50)
 // ==================================
+
+function tickets(peopleInLine) {
+  if (peopleInLine[0] != 25) {
+    return "NO";
+  }
+  let cashRegister = [1, 0];
+  for (let i = 1; i < peopleInLine.length; i++) {
+    if (peopleInLine[i] == 25) {
+      cashRegister[0] += 1;
+    }
+    if (peopleInLine[i] == 50) {
+      if (cashRegister[0] > 0) {
+        cashRegister[0] -= 1;
+        cashRegister[1] += 1;
+      } else {
+        return "NO";
+      }
+    }
+    if (peopleInLine[i] == 100) {
+      if (cashRegister[1] > 0 && cashRegister[0] > 0) {
+        cashRegister[0] -= 1;
+        cashRegister[1] -= 1;
+      } else if (cashRegister[0] > 2) {
+        cashRegister[0] -= 3;
+      } else {
+        return "NO";
+      }
+    }
+  }
+  return "YES";
+}
