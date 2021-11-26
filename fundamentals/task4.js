@@ -10,3 +10,15 @@
 // deepCount([1, 2, [3, 4, [5]]]);
 // >>>>> 7
 // ==================================
+
+function deepCount(arr) {
+  let count = arr.length;
+  for (let i = 0; i < arr.length; i++) {
+    if (Array.isArray(arr[i])) {
+      count += deepCount(arr[i]);
+    }
+  }
+  return count;
+}
+
+module.exports = deepCount;
